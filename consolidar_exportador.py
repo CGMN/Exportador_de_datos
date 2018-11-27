@@ -17,7 +17,7 @@ archivos_del_exportador=[]
 for i in archivoscsv:
 	archivos_del_exportador.append(pd.read_csv(i,encoding='latin1', header=None, low_memory=False))
 
-#crear primera linea
+#crea primera linea
 print('Paso 3 de 6 - Creando encabezados, eliminando filas inncesarias')
  #primeras columnas
 for i in range(0, len(archivoscsv)):
@@ -29,7 +29,7 @@ for i in range(0, len(archivoscsv)):
     for j in range(11,archivos_del_exportador[i].shape[1]):
         encabezado.append(str(archivos_del_exportador[i].iloc[0][j])+"_"+str(archivos_del_exportador[i].iloc[1][j])+"_"+str(archivos_del_exportador[i].iloc[2][j]))
 
-    #dejar la linea en primer lugar
+    #dejar la linea (encabezado) en primer lugar
     archivos_del_exportador[i].loc[-1] = encabezado  # adding a row
     archivos_del_exportador[i].index = archivos_del_exportador[i].index + 1  # shifting index
     archivos_del_exportador[i]= archivos_del_exportador[i].sort_index()  # sorting by index
